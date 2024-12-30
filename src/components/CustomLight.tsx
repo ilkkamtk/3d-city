@@ -13,10 +13,8 @@ const CustomLight = (props: ThreeElements['directionalLight']) => {
       ref={lightRef}
       intensity={1.5}
       castShadow
-      shadow-radius={10}
       shadow-mapSize-width={1024}
       shadow-mapSize-height={1024}
-      shadow-bias={-0.0005}
       shadow-camera-left={-100} // Extend the shadow area
       shadow-camera-right={100}
       shadow-camera-top={100}

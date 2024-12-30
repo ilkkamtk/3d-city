@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { FlyControls, PointerLockControls } from '@react-three/drei';
+import { FlyControls, PointerLockControls, Sky } from '@react-three/drei';
 import House from '../components/House';
 import { useMapContext } from '../hooks/ContextHooks';
 import Ground from '../components/Ground';
@@ -20,11 +20,12 @@ const City = () => {
           texture={house.texture}
           floors={house.floors}
           width={house.width}
-          height={house.height}
+          length={house.length}
         />
       ))}
       <Ground />
-      <CustomLight position={[60, 30, 30]} />
+      <CustomLight position={[200, 100, 50]} />
+      <Sky sunPosition={[200, 100, 50]} />
     </Canvas>
   );
 };

@@ -6,10 +6,7 @@ type MapContextType = {
   houses: House[];
   setHouses: React.Dispatch<React.SetStateAction<House[]>>;
   createImage: (url: string) => Promise<number[][] | null>;
-  placeHouses: (grid: number[][]) => {
-    x: number;
-    y: number;
-  }[];
+  placeHouses: (grid: number[][]) => House[];
 };
 
 const MapContext = createContext<MapContextType | null>(null);
