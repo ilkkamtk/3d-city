@@ -1,5 +1,3 @@
-
-
 # 3D City Project
 
 Testing react-three-fiber.

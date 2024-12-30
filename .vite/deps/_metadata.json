@@ -1,0 +1,76 @@
+{
+  "hash": "23230173",
+  "configHash": "6ad8c010",
+  "lockfileHash": "f84639e2",
+  "browserHash": "6599f3d5",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "2132313f",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "06e15f40",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "9646d291",
+      "needsInterop": true
+    },
+    "react-router": {
+      "src": "../../node_modules/react-router/dist/development/index.mjs",
+      "file": "react-router.js",
+      "fileHash": "999c980e",
+      "needsInterop": false
+    },
+    "@react-three/fiber": {
+      "src": "../../node_modules/@react-three/fiber/dist/react-three-fiber.esm.js",
+      "file": "@react-three_fiber.js",
+      "fileHash": "03bd8092",
+      "needsInterop": false
+    },
+    "@react-three/drei": {
+      "src": "../../node_modules/@react-three/drei/index.js",
+      "file": "@react-three_drei.js",
+      "fileHash": "d51d3a65",
+      "needsInterop": false
+    },
+    "three": {
+      "src": "../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "6c56e662",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "vision_bundle-EJYKSMNM": {
+      "file": "vision_bundle-EJYKSMNM.js"
+    },
+    "chunk-OOURYBDL": {
+      "file": "chunk-OOURYBDL.js"
+    },
+    "chunk-OLOL4YOO": {
+      "file": "chunk-OLOL4YOO.js"
+    },
+    "chunk-TWJRYSII": {
+      "file": "chunk-TWJRYSII.js"
+    },
+    "chunk-D3YM67E4": {
+      "file": "chunk-D3YM67E4.js"
+    },
+    "hls-EUBZ3I4X": {
+      "file": "hls-EUBZ3I4X.js"
+    },
+    "chunk-XTG7SMUB": {
+      "file": "chunk-XTG7SMUB.js"
+    },
+    "chunk-DC5AMYBS": {
+      "file": "chunk-DC5AMYBS.js"
+    }
+  }
+}
