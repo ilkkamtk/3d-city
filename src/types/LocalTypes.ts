@@ -6,7 +6,7 @@ type House = {
   floors: number;
   texture: Texture;
   width: number;
-  height: number;
+  length: number;
 };
 
 export type { House };

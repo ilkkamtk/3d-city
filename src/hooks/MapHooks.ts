@@ -1,6 +1,6 @@
 import { useLoader } from '@react-three/fiber';
 import { House } from '../types/LocalTypes';
-import { TextureLoader } from 'three';
+import { RepeatWrapping, TextureLoader } from 'three';
 
 const useMap = () => {
   const textures = useLoader(TextureLoader, [
@@ -94,10 +94,17 @@ const useMap = () => {
 
           // Record the top-left corner of the house, randomize the number of floors, add a texture
           const floors = Math.floor(Math.random() * 10) + 1;
-          const texture = textures[Math.floor(Math.random() * 3)];
+          const originalTexture = textures[Math.floor(Math.random() * 3)];
+          const texture = originalTexture.clone(); // Clone the texture for each house
           const width = Math.floor(Math.random() * 3) + 1;
-          const height = Math.floor(Math.random() * 3) + 1;
-          placedHouses.push({ x, y, floors, texture, width, height });
+          const length = Math.floor(Math.random() * 3) + 1;
+
+          // Set the texture repeat values based on the house dimensions
+          texture.wrapS = RepeatWrapping;
+          texture.wrapT = RepeatWrapping;
+          texture.repeat.set(width, floors);
+
+          placedHouses.push({ x, y, floors, texture, width, length });
         }
       }
     }
