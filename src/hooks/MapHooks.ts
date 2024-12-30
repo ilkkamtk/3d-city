@@ -1,8 +1,9 @@
 const useMap = () => {
   const createImage = async (imageFile: string) => {
-    return new Promise<number[][] | null>((resolve) => {
+    return new Promise<number[][] | null>((resolve, reject) => {
       const image = document.createElement('img');
       image.onload = () => resolve(convertImage(image));
+      image.onerror = () => reject(null);
       image.setAttribute('src', imageFile);
     });
   };
@@ -37,14 +38,13 @@ const useMap = () => {
       result.push([]);
       for (let x = 0; x < canvas.width; x++) {
         // Get pixel data (RGB values)
-        const data = ctx.getImageData(x, y, 1, 1).data;
+        const { data } = ctx.getImageData(x, y, 1, 1);
 
         // Determine if the pixel is black or white based on RGB values
-        // Here, we threshold based on the pixel's average value. You can adjust the threshold as needed.
         const average = (data[0] + data[1] + data[2]) / 3; // Average of R, G, B
 
         // If average brightness is greater than a threshold, we consider it white (1), otherwise black (0)
-        const threshold = 128; // 128 is the midpoint of the 0-255 range
+        const threshold = 128; // 128 is the midpoint of the 0-255 range, you can adjust the threshold as needed.
         const value = average > threshold ? 1 : 0;
 
         // Push the 1-bit value (0 or 1) to the result array
@@ -54,9 +54,17 @@ const useMap = () => {
     return result;
   };
 
-  function placeHouses(grid: number[][]) {
-    const gridSize = grid.length; // Assuming grid is square (100x100)
-    const houseSize = 70; // House size in pixels (2x2)
+  const placeHouses = (grid: number[][]) => {
+    if (
+      !grid ||
+      grid.length === 0 ||
+      grid[0].length === 0 ||
+      grid.length !== grid[0].length // Assuming grid is square
+    ) {
+      return [];
+    }
+    const gridSize = grid.length; // Assuming grid is square
+    const houseSize = 70; // House size in pixels
     const placedHouses = []; // Store coordinates of placed houses
 
     // Iterate through the grid, checking for 2x2 blocks
@@ -82,7 +90,7 @@ const useMap = () => {
     }
 
     return placedHouses;
-  }
+  };
 
   return { createImage, placeHouses };
 };
