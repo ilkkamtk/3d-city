@@ -13,7 +13,15 @@ const City = () => {
       <PointerLockControls />
       <FlyControls rollSpeed={0} movementSpeed={10} />
       {houses.map((house, index) => (
-        <House key={index} position={[house.x, 0, house.y]} />
+        <House
+          key={index}
+          x={house.x}
+          y={house.y}
+          texture={house.texture}
+          floors={house.floors}
+          width={house.width}
+          height={house.height}
+        />
       ))}
       <Ground />
       <CustomLight position={[60, 30, 30]} />

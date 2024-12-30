@@ -1,4 +1,13 @@
+import { useLoader } from '@react-three/fiber';
+import { House } from '../types/LocalTypes';
+import { TextureLoader } from 'three';
+
 const useMap = () => {
+  const textures = useLoader(TextureLoader, [
+    'material1.jpg',
+    'material2.jpg',
+    'material3.jpg',
+  ]);
   const createImage = async (imageFile: string) => {
     return new Promise<number[][] | null>((resolve, reject) => {
       const image = document.createElement('img');
@@ -54,7 +63,7 @@ const useMap = () => {
     return result;
   };
 
-  const placeHouses = (grid: number[][]) => {
+  const placeHouses = (grid: number[][]): House[] => {
     if (
       !grid ||
       grid.length === 0 ||
@@ -64,7 +73,7 @@ const useMap = () => {
       return [];
     }
     const gridSize = grid.length; // Assuming grid is square
-    const houseSize = 70; // House size in pixels
+    const houseSize = 30; // House size in pixels
     const placedHouses = []; // Store coordinates of placed houses
 
     // Iterate through the grid, checking for 2x2 blocks
@@ -83,8 +92,12 @@ const useMap = () => {
           grid[y + 1][x] = 0;
           grid[y + 1][x + 1] = 0;
 
-          // Record the top-left corner of the house
-          placedHouses.push({ x, y });
+          // Record the top-left corner of the house, randomize the number of floors, add a texture
+          const floors = Math.floor(Math.random() * 10) + 1;
+          const texture = textures[Math.floor(Math.random() * 3)];
+          const width = Math.floor(Math.random() * 3) + 1;
+          const height = Math.floor(Math.random() * 3) + 1;
+          placedHouses.push({ x, y, floors, texture, width, height });
         }
       }
     }
