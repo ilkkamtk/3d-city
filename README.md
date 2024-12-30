@@ -2,15 +2,12 @@
 
 # 3D City Project
 
-3D City is a project that leverages React, TypeScript, and Vite to create an interactive 3D city visualization. This project aims to provide users with an immersive experience of exploring a virtual city environment.
+Testing react-three-fiber.
 
 ## Features
 
-- Interactive 3D city visualization using React and Three.js
-- Fast development setup with Vite, including HMR (Hot Module Replacement)
-- TypeScript support for type safety and better development experience
-- ESLint configuration for code quality and consistency
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Dynamically created 3D city
+- Upload 100x100px BW image. Black pixels are streets, white pixels are areas for buildings.
 
 ## Getting Started
 
