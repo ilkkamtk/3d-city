@@ -4,6 +4,7 @@ import House from '../components/House';
 import { useMapContext } from '../hooks/ContextHooks';
 import Ground from '../components/Ground';
 import CustomLight from '../components/CustomLight';
+import Water from '../components/Water';
 
 const City = () => {
   const { houses } = useMapContext();
@@ -24,6 +25,7 @@ const City = () => {
         />
       ))}
       <Ground />
+      <Water />
       <CustomLight position={[200, 100, 50]} />
       <Sky sunPosition={[200, 100, 50]} />
     </Canvas>
