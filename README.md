@@ -1,6 +1,18 @@
-# React + TypeScript + Vite
 
+
+# 3D City Project
+
+3D City is a project that leverages React, TypeScript, and Vite to create an interactive 3D city visualization. This project aims to provide users with an immersive experience of exploring a virtual city environment.
+
+## Features
+
+- Interactive 3D city visualization using React and Three.js
+- Fast development setup with Vite, including HMR (Hot Module Replacement)
+- TypeScript support for type safety and better development experience
+- ESLint configuration for code quality and consistency
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+## Getting Started
 
 Currently, two official plugins are available:
 
