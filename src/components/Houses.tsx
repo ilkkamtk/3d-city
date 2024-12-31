@@ -25,8 +25,6 @@ const Houses = ({
         roughness: 1,
         roughnessMap: houses[i].roughnessMap,
       });
-
-      instancedMeshRef.current.instanceMatrix.needsUpdate = true;
     }
     // Update the instance
     instancedMeshRef.current.instanceMatrix.needsUpdate = true;
