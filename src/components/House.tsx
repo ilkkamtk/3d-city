@@ -7,17 +7,14 @@ const House = (props: HouseType) => {
   const offset = floors / 2; // Half the height of the house
 
   return (
-    <>
-      {/* The floor */}
-      <mesh position={[x, offset, y]} receiveShadow castShadow>
-        <boxGeometry args={[width, floors, length]} />
-        <meshStandardMaterial
-          map={texture}
-          roughness={1}
-          roughnessMap={roughnessMap}
-        />
-      </mesh>
-    </>
+    <mesh position={[x, offset, y]} receiveShadow castShadow>
+      <boxGeometry args={[width, floors, length]} />
+      <meshStandardMaterial
+        map={texture}
+        roughness={1}
+        roughnessMap={roughnessMap}
+      />
+    </mesh>
   );
 };
 

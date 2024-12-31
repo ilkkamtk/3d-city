@@ -3,6 +3,7 @@ import {
   FlyControls,
   PointerLockControls,
   Sky,
+  Stats,
   useFBX,
 } from '@react-three/drei';
 import House from '../components/House';
@@ -52,6 +53,7 @@ const City = () => {
         <Water />
         <CustomLight position={[200, 100, 50]} />
         <Sky sunPosition={[200, 100, 50]} />
+        <Stats />
       </Suspense>
     </Canvas>
   );
