@@ -19,7 +19,7 @@ const Trees = () => {
   }, [treeFBX]);
 
   const instancedTrees = useMemo(() => {
-    if (!templateMesh) return null;
+    if (!templateMesh) {
 
     // Create instanced mesh with the number of trees
     const instancedMesh = new InstancedMesh(
