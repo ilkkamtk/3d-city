@@ -139,42 +139,41 @@ const useMap = () => {
       for (let x = 0; x < gridSize; x++) {
         // If the current cell is on the edge and available for house placement
         if (edgeGrid[y][x] === 1 && canPlaceHouse(x, y)) {
-              for (let dy = 0; dy < houseSize; dy++) {
-                for (let dx = 0; dx < houseSize; dx++) {
-                  grid[y + dy][x + dx] = 0; // Mark these cells as used
-                }
-              }
+          for (let dy = 0; dy < houseSize; dy++) {
+            for (let dx = 0; dx < houseSize; dx++) {
+              grid[y + dy][x + dx] = 0; // Mark these cells as used
+            }
+          }
 
-              // Randomize house properties
-              const floors = Math.floor(Math.random() * houseSize * 5) + 1;
-              const randomTexture = Math.floor(Math.random() * 3);
-              const originalTexture = textures[randomTexture];
-              const originalRoughnessMap = textures[randomTexture + 3];
-              const texture = originalTexture.clone();
-              const roughnessMap = originalRoughnessMap.clone();
-              const width = (Math.floor(Math.random() * 3) + houseSize) / 2;
-              const length = (Math.floor(Math.random() * 3) + houseSize) / 2;
+          // Randomize house properties
+          const floors = Math.floor(Math.random() * houseSize * 5) + 1;
+          const randomTexture = Math.floor(Math.random() * 3);
+          const originalTexture = textures[randomTexture];
+          const originalRoughnessMap = textures[randomTexture + 3];
+          const texture = originalTexture.clone();
+          const roughnessMap = originalRoughnessMap.clone();
+          const width = (Math.floor(Math.random() * 3) + houseSize) / 2;
+          const length = (Math.floor(Math.random() * 3) + houseSize) / 2;
 
-              // Set texture properties
-              texture.wrapS = RepeatWrapping;
-              texture.wrapT = RepeatWrapping;
-              texture.repeat.set(width, floors);
-              roughnessMap.wrapS = RepeatWrapping;
-              roughnessMap.wrapT = RepeatWrapping;
-              roughnessMap.repeat.set(width, floors);
+          // Set texture properties
+          texture.wrapS = RepeatWrapping;
+          texture.wrapT = RepeatWrapping;
+          texture.repeat.set(width, floors);
+          roughnessMap.wrapS = RepeatWrapping;
+          roughnessMap.wrapT = RepeatWrapping;
+          roughnessMap.repeat.set(width, floors);
 
-              // Add the house to the list
-              placedHouses.push({
-                x,
-                y,
-                floors,
-                texture,
-                width,
-                length,
-                roughnessMap,
-              });
+          // Add the house to the list
+          placedHouses.push({
+            x,
+            y,
+            floors,
+            texture,
+            width,
+            length,
+            roughnessMap,
+          });
         }
-
       }
     }
 
@@ -201,8 +200,18 @@ const useMap = () => {
       const placedTrees: Tree[] = [];
       let treesPlaced = 0;
 
-      // Loop until the desired number of trees are placed
-      while (treesPlaced < treeCount) {
+      const hasAvailableSpots = () => {
+        for (let y = 0; y < gridSize; y++) {
+          for (let x = 0; x < gridSize; x++) {
+            if (canPlaceTree(x, y)) {
+              return true;
+            }
+          }
+        }
+        return false;
+      };
+
+      while (treesPlaced < treeCount && hasAvailableSpots()) {
         // Generate random coordinates within the grid
         const randomX = Math.floor(Math.random() * gridSize);
         const randomY = Math.floor(Math.random() * gridSize);
@@ -223,7 +232,7 @@ const useMap = () => {
       return placedTrees;
     };
 
-    const placedTrees = placeTrees(grid, 1500);
+    const placedTrees = placeTrees(grid, 5000);
     return { placedHouses, placedTrees };
   };
 
