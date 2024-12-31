@@ -138,46 +138,43 @@ const useMap = () => {
     for (let y = 0; y < gridSize; y++) {
       for (let x = 0; x < gridSize; x++) {
         // If the current cell is on the edge and available for house placement
-        if (edgeGrid[y][x] === 1) {
-          // Check if the entire house can fit starting at this cell (x, y)
-          if (canPlaceHouse(x, y)) {
-            // Mark cells as used (set to 0) in the grid
-            for (let dy = 0; dy < houseSize; dy++) {
-              for (let dx = 0; dx < houseSize; dx++) {
-                grid[y + dy][x + dx] = 0; // Mark these cells as used
+        if (edgeGrid[y][x] === 1 && canPlaceHouse(x, y)) {
+              for (let dy = 0; dy < houseSize; dy++) {
+                for (let dx = 0; dx < houseSize; dx++) {
+                  grid[y + dy][x + dx] = 0; // Mark these cells as used
+                }
               }
-            }
 
-            // Randomize house properties
-            const floors = Math.floor(Math.random() * houseSize * 5) + 1;
-            const randomTexture = Math.floor(Math.random() * 3);
-            const originalTexture = textures[randomTexture];
-            const originalRoughnessMap = textures[randomTexture + 3];
-            const texture = originalTexture.clone();
-            const roughnessMap = originalRoughnessMap.clone();
-            const width = (Math.floor(Math.random() * 3) + houseSize) / 2;
-            const length = (Math.floor(Math.random() * 3) + houseSize) / 2;
+              // Randomize house properties
+              const floors = Math.floor(Math.random() * houseSize * 5) + 1;
+              const randomTexture = Math.floor(Math.random() * 3);
+              const originalTexture = textures[randomTexture];
+              const originalRoughnessMap = textures[randomTexture + 3];
+              const texture = originalTexture.clone();
+              const roughnessMap = originalRoughnessMap.clone();
+              const width = (Math.floor(Math.random() * 3) + houseSize) / 2;
+              const length = (Math.floor(Math.random() * 3) + houseSize) / 2;
 
-            // Set texture properties
-            texture.wrapS = RepeatWrapping;
-            texture.wrapT = RepeatWrapping;
-            texture.repeat.set(width, floors);
-            roughnessMap.wrapS = RepeatWrapping;
-            roughnessMap.wrapT = RepeatWrapping;
-            roughnessMap.repeat.set(width, floors);
+              // Set texture properties
+              texture.wrapS = RepeatWrapping;
+              texture.wrapT = RepeatWrapping;
+              texture.repeat.set(width, floors);
+              roughnessMap.wrapS = RepeatWrapping;
+              roughnessMap.wrapT = RepeatWrapping;
+              roughnessMap.repeat.set(width, floors);
 
-            // Add the house to the list
-            placedHouses.push({
-              x,
-              y,
-              floors,
-              texture,
-              width,
-              length,
-              roughnessMap,
-            });
-          }
+              // Add the house to the list
+              placedHouses.push({
+                x,
+                y,
+                floors,
+                texture,
+                width,
+                length,
+                roughnessMap,
+              });
         }
+
       }
     }
 
