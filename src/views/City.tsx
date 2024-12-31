@@ -6,17 +6,18 @@ import {
   Stats,
   useFBX,
 } from '@react-three/drei';
-import House from '../components/House';
-import { useMapContext } from '../hooks/ContextHooks';
+// import House from '../components/House';
+// import { useMapContext } from '../hooks/ContextHooks';
 import Ground from '../components/Ground';
 import CustomLight from '../components/CustomLight';
 import Water from '../components/Water';
 import { Suspense } from 'react';
 import { Mesh } from 'three';
 import Trees from '../components/Trees';
+import Houses from '../components/Houses';
 
 const City = () => {
-  const { houses } = useMapContext();
+  // const { houses } = useMapContext();
   const treeFBX = useFBX('tree3.fbx');
 
   treeFBX.traverse((child) => {
@@ -36,7 +37,7 @@ const City = () => {
         <ambientLight intensity={0.8} />
         <PointerLockControls />
         <FlyControls rollSpeed={0} movementSpeed={10} />
-        {houses.map((house, index) => (
+        {/* {houses.map((house, index) => (
           <House
             key={index}
             x={house.x}
@@ -47,7 +48,8 @@ const City = () => {
             length={house.length}
             roughnessMap={house.roughnessMap}
           />
-        ))}
+        ))} */}
+        <Houses />
         <Trees />
         <Ground />
         <Water />
