@@ -5,8 +5,15 @@ type House = {
   y: number;
   floors: number;
   texture: Texture;
+  roughnessMap: Texture;
   width: number;
   length: number;
 };
 
-export type { House };
+type Tree = {
+  x: number;
+  y: number;
+  height: number;
+};
+
+export type { House, Tree };

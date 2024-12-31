@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useMapContext } from '../hooks/ContextHooks';
 
 const Home = () => {
-  const { createImage, placeHouses, setHouses, houses } = useMapContext();
+  const { createImage, placeHouses, setHouses, houses, trees, setTrees } =
+    useMapContext();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,8 +14,9 @@ const Home = () => {
       if (!grid) {
         return;
       }
-      const housesFromGrid = placeHouses(grid);
-      setHouses(housesFromGrid);
+      const { placedHouses, placedTrees } = placeHouses(grid);
+      setHouses(placedHouses);
+      setTrees(placedTrees);
     }
   };
 
@@ -22,7 +24,10 @@ const Home = () => {
     if (houses.length) {
       console.log(houses);
     }
-  }, [houses]);
+    if (trees.length) {
+      console.log(trees);
+    }
+  }, [houses, trees]);
 
   return (
     <div className="home">

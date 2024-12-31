@@ -4,9 +4,9 @@ const Ground = () => {
       <mesh
         receiveShadow
         rotation={[-Math.PI / 2, 0, 0]}
-        position={[35, 0, 35]}
+        position={[50, 0, 50]}
       >
-        <circleGeometry args={[51]} />
+        <planeGeometry args={[102, 102]} />
         <meshStandardMaterial color={'#555'} />
       </mesh>
     </>
