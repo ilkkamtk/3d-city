@@ -13,7 +13,7 @@ const House = (props: HouseType) => {
         <boxGeometry args={[width, floors, length]} />
         <meshStandardMaterial
           map={texture}
-          roughness={Math.PI}
+          roughness={1}
           roughnessMap={roughnessMap}
         />
       </mesh>
