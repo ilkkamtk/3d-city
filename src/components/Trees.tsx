@@ -1,4 +1,4 @@
-import { Mesh, InstancedMesh, Matrix4, Vector3 } from 'three';
+import { Mesh, InstancedMesh, Matrix4 } from 'three';
 import { useMapContext } from '../hooks/ContextHooks';
 import { useFBX } from '@react-three/drei';
 import { useMemo } from 'react';
@@ -20,6 +20,8 @@ const Trees = () => {
 
   const instancedTrees = useMemo(() => {
     if (!templateMesh) {
+      return null;
+    }
 
     // Create instanced mesh with the number of trees
     const instancedMesh = new InstancedMesh(
@@ -34,13 +36,28 @@ const Trees = () => {
     // Set position and rotation for each instance
     const matrix = new Matrix4();
     trees.forEach((tree, i) => {
-      // Optional: Add random rotation around Y axis for variety
-      matrix.makeRotationY(Math.random() * Math.PI * 2);
-      matrix.makeRotationX(-Math.PI / 2);
+      // Reset the matrix for each tree
+      matrix.identity();
+
+      // Set the position
       matrix.setPosition(tree.x, 0, tree.y);
-      matrix.scale(
-        new Vector3(tree.height / 10, tree.height / 10, tree.height / 10),
+
+      // X-axis rotation to make the tree stand up
+      const rotationX = new Matrix4().makeRotationX(-Math.PI / 2);
+      // randomize the  Y-axis rotation
+      const rotationZ = new Matrix4().makeRotationZ(
+        Math.random() * Math.PI * 2,
       );
+      // scale the tree
+      const scale = new Matrix4().makeScale(
+        tree.height / 5,
+        tree.height / 5,
+        tree.height / 5,
+      );
+
+      matrix.multiply(rotationX).multiply(rotationZ).multiply(scale);
+
+      // Add the transformed matrix to the instanced mesh
       instancedMesh.setMatrixAt(i, matrix);
     });
 
