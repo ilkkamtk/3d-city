@@ -10,11 +10,12 @@ import { useMapContext } from '../hooks/ContextHooks';
 import Ground from '../components/Ground';
 import CustomLight from '../components/CustomLight';
 import Water from '../components/Water';
-import { Suspense, useMemo } from 'react';
+import { Suspense } from 'react';
 import { Mesh } from 'three';
+import Trees from '../components/Trees';
 
 const City = () => {
-  const { houses, trees } = useMapContext();
+  const { houses } = useMapContext();
   const treeFBX = useFBX('tree3.fbx');
 
   treeFBX.traverse((child) => {
@@ -23,9 +24,7 @@ const City = () => {
       child.receiveShadow = true;
     }
   });
-  const treeModels = useMemo(() => {
-    return trees.map(() => treeFBX.clone());
-  }, [treeFBX, trees]);
+
   return (
     <Canvas
       shadows
@@ -48,18 +47,7 @@ const City = () => {
             roughnessMap={house.roughnessMap}
           />
         ))}
-        {trees.map((tree, index) => {
-          return (
-            <primitive
-              key={index}
-              castShadow={true}
-              receiveShadow
-              object={treeModels[index]}
-              position={[tree.x, 0, tree.y]}
-              scale={0.001 * tree.height}
-            />
-          );
-        })}
+        <Trees />
         <Ground />
         <Water />
         <CustomLight position={[200, 100, 50]} />
