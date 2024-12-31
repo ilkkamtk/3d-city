@@ -35,6 +35,10 @@ const Trees = () => {
 
     // Set position and rotation for each instance
     const matrix = new Matrix4();
+    const rotationX = new Matrix4();
+    const rotationZ = new Matrix4();
+    const scale = new Matrix4();
+
     trees.forEach((tree, i) => {
       // Reset the matrix for each tree
       matrix.identity();
@@ -43,17 +47,11 @@ const Trees = () => {
       matrix.setPosition(tree.x, 0, tree.y);
 
       // X-axis rotation to make the tree stand up
-      const rotationX = new Matrix4().makeRotationX(-Math.PI / 2);
+      rotationX.makeRotationX(-Math.PI / 2);
       // randomize the  Y-axis rotation
-      const rotationZ = new Matrix4().makeRotationZ(
-        Math.random() * Math.PI * 2,
-      );
+      rotationZ.makeRotationZ(Math.random() * Math.PI * 2);
       // scale the tree
-      const scale = new Matrix4().makeScale(
-        tree.height / 5,
-        tree.height / 5,
-        tree.height / 5,
-      );
+      scale.makeScale(tree.height / 5, tree.height / 5, tree.height / 5);
 
       matrix.multiply(rotationX).multiply(rotationZ).multiply(scale);
 
