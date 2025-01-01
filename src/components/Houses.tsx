@@ -83,9 +83,9 @@ const Houses = () => {
           for (let z = 0; z < house.length; z++) {
             // Calculate block position
             tempObject.current.position.set(
-              house.x + x * blockScale,
-              (floor + 0.5) * blockScale,
-              house.y + z * blockScale,
+              house.x + x,
+              floor + 0.5,
+              house.y + z,
             );
 
             // Apply scaling
