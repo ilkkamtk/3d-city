@@ -44,7 +44,7 @@ const Houses = () => {
   const rotationX = useRef(new Matrix4()); // For X-axis rotation
 
   const instancedHouses = useMemo(() => {
-    if (!templateMeshes.every(Boolean) || !houses.length) return null;
+    if (!templateMeshes.every(Boolean) || !houses.length) {
 
     // Create separate InstancedMesh for each material type
     const instancedMeshes = templateMeshes.map(
