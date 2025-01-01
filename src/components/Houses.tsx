@@ -45,6 +45,8 @@ const Houses = () => {
 
   const instancedHouses = useMemo(() => {
     if (!templateMeshes.every(Boolean) || !houses.length) {
+      return null;
+    }
 
     // Create separate InstancedMesh for each material type
     const instancedMeshes = templateMeshes.map(
