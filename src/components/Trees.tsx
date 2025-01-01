@@ -6,6 +6,8 @@ import { useMemo, useRef } from 'react';
 const Trees = () => {
   const { trees } = useMapContext();
   const treeFBX = useFBX('tree3.fbx');
+
+  console.log('treeFBX', treeFBX);
   // Set position and rotation for each instance
   const matrix = useRef(new Matrix4());
   const rotationX = useRef(new Matrix4());

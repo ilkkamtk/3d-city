@@ -1,17 +1,6 @@
-import { useLoader } from '@react-three/fiber';
 import { House, Tree } from '../types/LocalTypes';
-import { RepeatWrapping, TextureLoader } from 'three';
 
 const useMap = () => {
-  const textures = useLoader(TextureLoader, [
-    'material1.jpg',
-    'material2.jpg',
-    'material3.jpg',
-    'roughness1.jpg',
-    'roughness2.jpg',
-    'roughness3.jpg',
-  ]);
-
   const createImage = async (imageFile: string) => {
     return new Promise<number[][] | null>((resolve, reject) => {
       const image = document.createElement('img');
@@ -147,31 +136,18 @@ const useMap = () => {
 
           // Randomize house properties
           const floors = Math.floor(Math.random() * houseSize * 5) + 1;
-          const randomTexture = Math.floor(Math.random() * 3);
-          const originalTexture = textures[randomTexture];
-          const originalRoughnessMap = textures[randomTexture + 3];
-          const texture = originalTexture.clone();
-          const roughnessMap = originalRoughnessMap.clone();
+          const material = Math.floor(Math.random() * 3);
           const width = (Math.floor(Math.random() * 3) + houseSize) / 2;
           const length = (Math.floor(Math.random() * 3) + houseSize) / 2;
-
-          // Set texture properties
-          texture.wrapS = RepeatWrapping;
-          texture.wrapT = RepeatWrapping;
-          texture.repeat.set(width, floors);
-          roughnessMap.wrapS = RepeatWrapping;
-          roughnessMap.wrapT = RepeatWrapping;
-          roughnessMap.repeat.set(width, floors);
 
           // Add the house to the list
           placedHouses.push({
             x,
             y,
             floors,
-            texture,
+            material,
             width,
             length,
-            roughnessMap,
           });
         }
       }

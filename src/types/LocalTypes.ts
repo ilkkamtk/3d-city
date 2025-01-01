@@ -1,11 +1,8 @@
-import { Texture } from 'three';
-
 type House = {
   x: number;
   y: number;
   floors: number;
-  texture: Texture;
-  roughnessMap: Texture;
+  material: number;
   width: number;
   length: number;
 };
